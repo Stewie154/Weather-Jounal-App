@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+projectData = [];
 
 //used to hide api key in .env file
 require('dotenv').config();
@@ -35,6 +35,7 @@ app.get('/', sendData);
 
 //addData callback function
 const addData = (request, response) => {
+    console.log(request.body);
     let newEntry = {
         temperature: request.body.temperature,
         date: request.body.date,
@@ -45,7 +46,7 @@ const addData = (request, response) => {
 }
 
 //POST route that adds incoming data to projectData
-app.post('/', addData);
+app.post('/addData', addData);
 
 // Setup Server
 const port = 8000;

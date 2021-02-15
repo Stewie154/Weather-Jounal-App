@@ -13,12 +13,12 @@ document.getElementById('generate').addEventListener('click', function(){
     userZipCode = document.getElementById('zip').value;
     baseUrl = `http://api.openweathermap.org/data/2.5/weather?zip=${userZipCode},${countryCode}&appid=${apiKey}`
     getData(baseUrl)
-    // .then(function(data){
-    //     console.log(data);
-    //     //add data to post request
-    //     let userResponse = document.getElementById('feelings').value;
-    //     postData('/addData', {temperature: data.main.temp, date: newDate, userResponse: userResponse})
-    // })
+    .then(function(data){
+        console.log(data);
+        //add data to post request
+        let userResponse = document.getElementById('feelings').value;
+        postData('/addData', {temperature: data.main.temp, date: newDate, userResponse: userResponse})
+    })
 });
 
 //getData async function to make get request to OpenWeatherMap api (get the weather)
@@ -40,8 +40,8 @@ const getData = async(url) => {
 }
 
 //postData async function to store the weather data in the app 
-const postData = async(path, dataObject) => {
-    const response = await fetch(path, {
+const postData = async(url = '', dataObject) => {
+    const response = await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
