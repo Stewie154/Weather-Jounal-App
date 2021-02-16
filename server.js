@@ -25,6 +25,14 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('website'));
 
+//getStoredData callback function
+const getStoredData = (request, response) => {
+    response.send(projectData);
+}
+
+//route to retrieve data from projectData
+app.get('/all', getStoredData);
+
 //sendData callback function
 const sendData = (request, response) => {
     response.send(projectData);
@@ -35,13 +43,14 @@ app.get('/', sendData);
 
 //addData callback function
 const addData = (request, response) => {
-    console.log(request.body);
     let newEntry = {
         temperature: request.body.temperature,
         date: request.body.date,
         userResponse: request.body.userResponse
     }
+    //add newEntry object to projectData
     projectData.push(newEntry);
+    //console log project data to check newEntry was added successfully
     console.log(projectData);
 }
 

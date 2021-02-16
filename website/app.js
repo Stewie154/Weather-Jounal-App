@@ -18,6 +18,7 @@ document.getElementById('generate').addEventListener('click', function(){
         //add data to post request
         let userResponse = document.getElementById('feelings').value;
         postData('/addData', {temperature: data.main.temp, date: newDate, userResponse: userResponse})
+        updateUI();
     })
 });
 
@@ -54,6 +55,22 @@ const postData = async(url = '', dataObject) => {
         console.log(newData);
         return newData;
     } catch (error) {
+        console.log('Error!', error);
+    }
+}
+
+//function to display data retrieved to in the UI 
+const updateUI = async () => {
+    //request to get stored projectData from server.js via all route
+    const request = await fetch('/all');
+    try {
+        //converts dataCollection from string to json
+        const dataCollection = await request.json();
+        //display the date, temp, userResponse from last element in DC array, always displays latest entry
+        document.getElementById('date').innerHTML = dataCollection[dataCollection.length -1].date;
+        document.getElementById('temp').innerHTML = dataCollection[dataCollection.length -1].temperature;
+        document.getElementById('content').innerHTML = dataCollection[dataCollection.length -1].userResponse;
+    } catch (error){
         console.log('Error!', error);
     }
 }
