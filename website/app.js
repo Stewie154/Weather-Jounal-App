@@ -67,9 +67,9 @@ const updateUI = async () => {
         //converts dataCollection from string to json
         const dataCollection = await request.json();
         //display the date, temp, userResponse from last element in DC array, always displays latest entry
-        document.getElementById('date').innerHTML = dataCollection[dataCollection.length -1].date;
-        document.getElementById('temp').innerHTML = dataCollection[dataCollection.length -1].temperature;
-        document.getElementById('content').innerHTML = dataCollection[dataCollection.length -1].userResponse;
+        document.getElementById('date').innerHTML = 'Date: ' + dataCollection[dataCollection.length -1].date;
+        document.getElementById('temp').innerHTML = 'Temperature: ' + dataCollection[dataCollection.length -1].temperature;
+        document.getElementById('content').innerHTML = 'Feelings: ' + dataCollection[dataCollection.length -1].userResponse;
     } catch (error){
         console.log('Error!', error);
     }

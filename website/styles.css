@@ -1,6 +1,14 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
 body{
     background: #fffff8;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  
 }
 
 #app{
@@ -17,7 +25,9 @@ body{
 }
 
 .holder{
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .entry{
@@ -29,22 +39,22 @@ body{
 }
 
 #date{
-
+    text-align: center;
 }
 
 #temp{
-
+    text-align: center;
 }
 
 #content{
-
+    text-align: center;
 }
 
 .headline {
-
+    font-size: 5em;
 }
 .title{
-
+    text-align: center;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
